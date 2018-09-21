@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-tw" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+      <link rel="stylesheet" th:href="@{/plugins/bootstrap/css/bootstrap.css}"></link>
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"></link>
+      <script th:src="@{/plugins/bootstrap/js/bootstrap.min.js"></script>
+      <script th:src="@{/plugins/jquery-3.3.1.min.js}"></script>
+      <script th:src="@{/plugins/jquery-ui/jquery-ui.js}"></script>
+  </head>
+  <body>
+    <div th:fragment="header">
+    <div class="main_h" id="myHeader">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand logoimg" href="/">
+				<img th:src="@{/images/1537338080938_resized.jpg}" height="48px">Fun活動</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarNavDropdown" class="navbar-collapse collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown dropdown-hover">
+                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span th:text="最新消息"></span>		
+						</a>			
+                    <div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdownMenuLink">
+                       <a href="/member/systemmessage" class="dropdown-item">站務公告</a>
+                        <a href="#" class="dropdown-item">活動通告</a>
+                    </div>                  
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/activity/">活動列表</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0 search-containerrr" th:action="@{/activity/search}"method="post" >
+      			<input class="form-control mr-sm-2" type="search" name="searchValue" placeholder="Search" aria-label="Search">
+      			<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+					<div class="dropdownnn-content">
+					熱門搜尋： <a href="#夏日衝浪玩水趣">夏日衝浪玩水趣</a> <a href="#輕水彩繪畫">輕水彩繪畫</a> <a
+					href="#職人帶你玩木工">職人帶你玩木工</a> <a href="#美食攝影課">美食攝影課</a>
+					</div>   			
+   			</form>
+            <ul class="navbar-nav" th:if="${#authorization.expression('!isAuthenticated()')}">
+                <li class="nav-item">
+                    <a class="nav-link" href="/login" th:href="@{/login}">登入</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register/add" th:href="@{/register/addUser}">註冊</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav" th:if="${#authorization.expression('isAuthenticated()')}">
+                <li class="nav-item navbar-buttonspace">
+                    <a class="btn btn-primary" href="/activity/select">開活動</a>
+                </li>
+                <li class="nav-item navbar-buttonspace" th:if="${#authorization.expression('hasAuthority(''M'')')}">
+                    <a class="btn btn-primary" href="/admin/">管理</a>
+                </li>
+                <li class="nav-item navbar-buttonspace">
+                    <a class="btn btn-primary" href="/chat">聊天室</a>
+                </li>
+                <li class="nav-item dropdown  dropdown-hover">
+                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span th:text="${#authentication.name}">User</span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdownMenuLink">
+                   		<a class="dropdown-header" >活動專區</a>
+                        <a class="dropdown-item" href="/activity/browser">我舉辦的活動</a>                      
+                        <a class="dropdown-item" href="/ticket/tickethomepage">我參加的活動</a>
+						<!-- <a class="dropdown-item" href="/ticket/tickethomepage">我的票券</a> -->
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-header" >會員專區</a>
+                        <!--  a class="dropdown-item" href="/member/myhomepage">會員資料</a> -->
+                        <a class="dropdown-item" th:href="@{${'/member/edit'}}"  >修改會員資料</a>                 
+                        <a class="dropdown-item" href="/member/verify">帳號認證</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+	               	<form th:action="@{/logout}" method="post">
+			            <input class="btn btn-primary" type="submit" value="登出"/>
+			        </form>
+                </li>
+            </ul>
+        </div>
+        
+				<!-- 滑出視窗 -->
+				<div class="sidebar_right2">
+					<span style="cursor: pointer" onclick="openNav()"> <img
+						th:src="@{https://cdn4.iconfinder.com/data/icons/flat-color-sale-tag-set/512/Accounts_label_promotion_sale_tag_18-512.png}"
+						width="100px" class="hvr-pulse">
+					</span>
+				</div>
+				<!-- <div id="myNav" class="overlay">
+					<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+						&times;</a>
+					<div class="overlay-content overlay-scroll">
+							<div th:each="bean:${beanList}">
+								<h5 class="card-title" th:text="${bean.activityName}"></h5>
+								<p class="card-text" th:text="${bean.actiivityDescription}">
+								<div class="d-flex justify-content-between align-items-center">
+									<div class="btn-group">
+										<a th:href="@{${'/activity/'+bean.activityId+'/detail'}}"
+											class="btn btn-sm btn-outline-secondary">詳細</a>
+									</div>
+									<small class="text-muted">9 mins<div onclick="topFunction()" id="myBtn" title="Go to top"><img
+						th:src="@{http://cdn.onlinewebfonts.com/svg/img_158933.png}" width="24px"></div></small>
+								</div>
+								</p>
+								
+							</div>
+							<a href="/activity/">
+								<div class="overlay-more">查看更多</div>
+							</a>
+					</div>
+				</div> -->
+
+				<script th:inline="javascript">
+					function openNav() {
+						document.getElementById("myNav").style.width = "310px";
+					}
+
+					function closeNav() {
+						document.getElementById("myNav").style.width = "0%";
+					}
+					
+					function topFunction() {
+					    $(".overlay").scrollTop("0");
+					}
+				</script> 				
+				
+    </nav>
+			<div class="search-container-outerbox" id="">
+				<div class="search-container-groupbox">
+					<div class="search-container-box">📚學習</div>
+					<div class="search-container-box">🌊親水</div>
+					<div class="search-container-box">👪親子</div>
+					<div class="search-container-box">👨‍🍳美食</div>
+					<div class="search-container-box">🔨體驗</div>
+				</div>
+			</div> 
+     </div>
+     <script type="text/javascript" th:inline=javascript>
+          
+          window.onscroll = function() {myFunction()};
+
+          var header = document.getElementById("myHeader");
+          var sticky = header.offsetTop;
+
+          function myFunction() {
+            if (window.pageYOffset > sticky) {
+              header.classList.add("sticky");
+            } else {
+              header.classList.remove("sticky");
+            }
+          }          
+    	  </script>
+     
+     
+    </div>
+  </body>
+</html>
