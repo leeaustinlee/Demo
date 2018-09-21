@@ -26,16 +26,17 @@
 						<a href="/activity/createfree" class="btn btn-info">免費票</a>
 					</div>
 				</div>
-				<div style="padding-left:55px;">或</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10"
 						th:if="${#authorization.expression('hasAuthority(''M'')')}">
+						<div style="padding-left: 30px; margin-bottom: 30px;">或</div>
 						<a href="/activity/create" class="btn btn-info">付費票</a>
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10"
 						th:if="${#authorization.expression('hasAuthority(''P'')')}">
+						<div style="padding-left: 30px; margin-bottom: 30px;">或</div>
 						<a href="/activity/create" class="btn btn-info">付費票</a>
 					</div>
 				</div>
@@ -43,7 +44,7 @@
 		</div>
 		<div th:replace="fragments/footer :: footer"></div>
 	</div>
-	
+
 </body>
 </html>
 
