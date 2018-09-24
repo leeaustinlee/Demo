@@ -223,8 +223,18 @@
 							class="sidebar_right2_small-box-containerbutton">報名活動</a>
 					</div>
 				</div>
+				
+				<script type="text/javascript">			
+			    $(window).scroll(function(){
+			        last=$("body").height()-$(window).height()-200
+			        if($(window).scrollTop()>=last){
+			        $(".sidebar_right2_small").fadeOut();
+			        }
+			        else{$(".sidebar_right2_small").fadeIn();}
+			   	})				
+				</script>				
+				
 			</div>
-
 		</div>
 		<div th:replace="fragments/footer :: footer"></div>
 	</div>
