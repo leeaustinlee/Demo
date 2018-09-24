@@ -40,9 +40,8 @@
 			<div class="box3-father">
 				<div class="form-group">
 					<label for="activityImage" class="col-sm-2 control-label"></label>
-					<div class="col-sm-12">
-						<img height="400" width="auto"
-							th:src="@{${'/activity/'+bean.activityId+'/image/'+bean.activityImage}}" />
+					<div class="col-sm-12 detail-img-outter">
+						<img class="detail-img-inner" th:src="@{${'/activity/'+bean.activityId+'/image/'+bean.activityImage}}" />
 					</div>
 				</div>
 
