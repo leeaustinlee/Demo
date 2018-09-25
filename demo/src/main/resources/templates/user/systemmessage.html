@@ -43,7 +43,8 @@
 		        </thead>
 		        <tbody>
 		        <tr  th:each=" bean: ${beanList}" >
-		            <th scope="row" th:text="${bean.messageId}"></th>
+		            <th scope="row" th:text="${bean.messageId}" hidden="true"></th>
+		            <th></th>
 		            <td th:text="${bean.MessageName}"></td>
 		            <td th:text="${bean.Message}"></td>
 					<td th:text="${bean.SendTime}"></td>

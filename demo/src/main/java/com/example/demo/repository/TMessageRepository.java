@@ -9,11 +9,11 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.TMessage;
 
-	@Repository
-	public interface TMessageRepository extends CrudRepository<TMessage, Integer> {
-		@Query("select a from TMessage a where a.messageId=:messageId")
-		public TMessage getById(@Param("messageId") int messageId);
-		
-		@Query("select a from TMessage a")
-		public List<TMessage> getAll();
-	}
+@Repository
+public interface TMessageRepository extends CrudRepository<TMessage, Integer> {
+	@Query("select a from TMessage a where a.messageId=:messageId")
+	public TMessage getById(@Param("messageId") int messageId);
+
+	@Query("select a from TMessage a order by messageId desc")
+	public List<TMessage> getAll();
+}
