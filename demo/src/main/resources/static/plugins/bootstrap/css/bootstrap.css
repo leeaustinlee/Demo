@@ -6117,7 +6117,7 @@ button.close {
 }
 
 .bg-primary {
-  background-color: #b3d9d9 !important;
+  background-color: rgba(179,217,217,1) !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
@@ -9810,6 +9810,46 @@ body {
 
 .paycount{
  max-width: 160px;
+}
+
+.table3 th:nth-child(1) {
+ width: 1vw;
+}
+
+.table3 th:nth-child(2) {
+ width: 12vw;
+}
+
+.table3 th:nth-child(3) {
+ width: 20vw;
+}
+
+.table3 th:nth-child(4) {
+ width: 8vw;
+}
+
+.table3 th:nth-child(5) {
+ width: 1vw;
+}
+
+.table4 th:nth-child(1) {
+ width: 1vw;
+}
+
+.table4 th:nth-child(2) {
+ width: 12vw;
+}
+
+.table4 th:nth-child(3) {
+ width: 8vw;
+}
+
+.table4 th:nth-child(4) {
+ width: 1vw;
+}
+
+.table4 th:nth-child(5) {
+ width: 1vw;
 }
 
 /*# sourceMappingURL=bootstrap.css.map */

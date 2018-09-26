@@ -40,9 +40,8 @@ function check() {
 </div>
 		<div class="form-group">
 			<label for="activityImage" class="col-sm-2 control-label"></label>
-			<div class="col-sm-10">
-				<img height="400" width="500"
-					th:src="@{${'/activity/'+bean.activityId+'/image/'+bean.activityImage}}" />
+			<div class="col-sm-12 detail-img-outter">
+				<img class="detail-img-inner" th:src="@{${'/activity/'+bean.activityId+'/image/'+bean.activityImage}}" />
 			</div>
 		</div>
 		<div class="hero-unit">

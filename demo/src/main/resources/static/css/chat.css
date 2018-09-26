@@ -38,6 +38,14 @@ body:before {
     clear: both;
 }
 
+.phone-1{
+ display: none;
+}
+
+ @media only screen and (min-width:1000px) {
+      .phone-1 { display: block; }
+      }
+
 .hidden {
     display: none;
 }
@@ -49,12 +57,25 @@ body:before {
     border: 1px solid #c8c8c8;
 }
 
+.input-form-control {
+    border: 1px solid #c8c8c8;
+}
+
+.input-form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
 .form-group {
     margin-bottom: 15px;
 }
 
 .row{
-	height:100%;	
+	height:100%;
+/* 	overflow:hidden; */
 }
 
 input {
@@ -224,12 +245,12 @@ button.accent {
 
 #messageForm .input-group input {
     float: left;
-    width: calc(100% - 85px);
+    width: 25%;
 }
 
 #messageForm .input-group button {
     float: left;
-    width: 80px;
+    width: 60px;
     height: 38px;
     margin-left: 5px;
 }
@@ -281,11 +302,11 @@ button.accent {
     }
 
     #messageForm .input-group button {
-        width: 65px;
+        width: 60px;
     }
 
     #messageForm .input-group input {
-        width: calc(100% - 70px);
+        width: 25%;
     }
 
     .chat-header {
